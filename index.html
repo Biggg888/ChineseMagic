@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://6tail.cn/calendar/demo.bazi.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>ChineseMagic</title>
+<meta name="keywords" content="lunar,阳历,阴历,公历,农历,道历,佛历">
+<meta name="description" content="lunar是一个无依赖的支持阳历、阴历、道历和佛历的日历工具库。">
+<meta name="author" content="6tail">
+<link rel="stylesheet" href="./common.css">
+<link rel="stylesheet" href="./highlight.min.css">
+<link rel="stylesheet" href="./markdown.css">
+<link rel="stylesheet" href="./page.css">
+<style type="text/css">
+.line{
+  margin:20px;
+}
+.line input,.line select{
+  padding:5px;
+}
+.line .title{
+  margin-top:20px;
+  margin-bottom:5px;
+}
+td.active{
+  background:orange;
+}
+
+/* 添加新的textarea样式 */
+.text-area {
+  width: 90%;
+  min-height: 80px;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: inherit;
+}
+</style>
+<script src="chrome-extension://bpoadfkcbjbfhfodiogcnhhhpibjhbnh/image/inject.js" id="imt-image-inject"></script><style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.immersive-translate-attach-loading::after {
+  content: " ";
+
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2000%, -50%);
+  z-index: 100;
+}
+
+.immersive-translate-loading-spinner {
+  vertical-align: middle !important;
+  width: 10px !important;
+  height: 10px !important;
+  display: inline-block !important;
+  margin: 0 4px !important;
+  border: 2px rgba(221, 244, 255, 0.6) solid !important;
+  border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+  animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+}
+
+@-webkit-keyframes immersive-translate-loading-animation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes immersive-translate-loading-animation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.immersive-translate-input-loading {
+  --loading-color: #f78fb6;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: block;
+  margin: 12px auto;
+  position: relative;
+  color: white;
+  left: -100px;
+  box-sizing: border-box;
+  animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+}
+
+@keyframes immersiveTranslateShadowRolling {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  12% {
+    box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  25% {
+    box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  36% {
+    box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+      100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+      110px 0 var(--loading-color), 100px 0 var(--loading-color);
+  }
+
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+      120px 0 var(--loading-color), 110px 0 var(--loading-color);
+  }
+
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      130px 0 var(--loading-color), 120px 0 var(--loading-color);
+  }
+
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+  }
+
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.immersive-translate-toast {
+  display: flex;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  right: 0;
+  top: 1%;
+  width: fit-content;
+  padding: 12px 20px;
+  margin: auto;
+  overflow: auto;
+  background: #fef6f9;
+  box-shadow: 0px 4px 10px 0px rgba(0, 10, 30, 0.06);
+  font-size: 15px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.immersive-translate-toast-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.immersive-translate-toast-hidden {
+  margin: 0 20px 0 72px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.immersive-translate-toast-close {
+  color: #666666;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-toast {
+    top: 0;
+    padding: 12px 0px 0 10px;
+  }
+  .immersive-translate-toast-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .immersive-translate-toast-hidden {
+    margin: 10px auto;
+  }
+}
+
+.immersive-translate-modal {
+  display: none;
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+}
+
+.immersive-translate-modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 40px 24px 24px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 270px;
+  font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-content {
+    margin: 50% auto !important;
+  }
+}
+
+.immersive-translate-modal .immersive-translate-modal-content-in-input {
+  max-width: 500px;
+}
+.immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+  text-align: left;
+  max-height: unset;
+}
+
+.immersive-translate-modal-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.immersive-translate-modal-body {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  word-break: break-all;
+  margin-top: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .immersive-translate-modal-body {
+    max-height: 250px;
+    overflow-y: auto;
+  }
+}
+
+.immersive-translate-close {
+  color: #666666;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.immersive-translate-close:hover,
+.immersive-translate-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.immersive-translate-modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.immersive-translate-btn {
+  width: fit-content;
+  color: #fff;
+  background-color: #ea4c89;
+  border: none;
+  font-size: 16px;
+  margin: 0 8px;
+  padding: 9px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.immersive-translate-btn:hover {
+  background-color: #f082ac;
+}
+.immersive-translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.immersive-translate-btn:disabled:hover {
+  background-color: #ea4c89;
+}
+
+.immersive-translate-cancel-btn {
+  /* gray color */
+  background-color: rgb(89, 107, 120);
+}
+
+.immersive-translate-cancel-btn:hover {
+  background-color: hsl(205, 20%, 32%);
+}
+
+.immersive-translate-action-btn {
+  background-color: transparent;
+  color: #ea4c89;
+  border: 1px solid #ea4c89;
+}
+
+.immersive-translate-btn svg {
+  margin-right: 5px;
+}
+
+.immersive-translate-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #007bff;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-primary-link {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  text-decoration: none;
+  color: #ea4c89;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+.immersive-translate-modal input[type="radio"] {
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.immersive-translate-modal label {
+  cursor: pointer;
+}
+
+.immersive-translate-close-action {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.imt-image-status {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 16px !important;
+}
+.imt-image-status img,
+.imt-image-status svg,
+.imt-img-loading {
+  width: 28px !important;
+  height: 28px !important;
+  margin: 0 0 8px 0 !important;
+  min-height: 28px !important;
+  min-width: 28px !important;
+  position: relative !important;
+}
+.imt-img-loading {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+  background-size: 28px 28px;
+  animation: image-loading-rotate 1s linear infinite !important;
+}
+
+.imt-image-status span {
+  color: var(--bg-2, #fff) !important;
+  font-size: 14px !important;
+  line-height: 14px !important;
+  font-weight: 500 !important;
+  font-family: "PingFang SC", Arial, sans-serif !important;
+}
+.summary-container {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.summary-container h3 {
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card h4 {
+  color: #3498db;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.meta {
+  margin-top: 0.8rem;
+  font-size: 0.9em;
+  color: #7f8c8d;
+}
+
+.detail {
+  color: #95a5a6;
+  font-size: 0.9em;
+  margin-top: 0.5rem;
+}
+@keyframes image-loading-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.result-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.bazi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.bazi-table th, .bazi-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.bazi-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.additional-info {
+    list-style-type: none;
+    padding: 0;
+}
+
+.additional-info li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.summary-container {
+    margin-top: 30px;
+}
+
+.pillars-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.card ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card .meta {
+    font-size: 14px;
+    color: #777;
+}
+
+.summary-text {
+    margin-top: 20px;
+}
+
+.text-area {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+    resize: vertical;
+}
+
+</style>
+
+<style>
+/* 基础样式 */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h2 {
+  color: #444;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  color: #666;
+}
+
+/* 表单容器 */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 表单组 */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* 输入框和下拉菜单 */
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 按钮 */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 15px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}
+
+</style>
+<style>
+  .yun-table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    min-width: 800px;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .yun-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .yun-table td:first-child {
+    font-weight: 600;
+    background-color: #f8f9fa;
+    width: 100px;
+  }
+  
+  .yun-table tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  .yun-table td.active {
+    background-color: #fff3e0;
+    font-weight: 600;
+    color: #ef6c00;
+    position: relative;
+  }
+  
+  .yun-table td.active::after {
+    content: "★";
+    position: absolute;
+    right: 2px;
+    top: 0;
+    font-size: 12px;
+  }
+  
+  .yun-table td:hover {
+    background-color: #fff8e1;
+  }
+  
+  .table-caption {
+    color: #999;
+    font-size: 0.9em;
+    margin-top: 0.5rem;
+  }
+  </style>
+    <style>
+
+
+      .spell-card {
+          background: linear-gradient(145deg, #fff9f0, #f0e6d3);
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin: 1rem 0;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+          transition: transform 0.2s;
+          position: relative;
+          border-left: 5px solid #c53d13;
+      }
+
+      .spell-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .spell-title {
+          color: #c53d13;
+          font-size: 1.4em;
+          margin-bottom: 0.8rem;
+          font-weight: bold;
+          letter-spacing: 1px;
+      }
+
+      .spell-content {
+          color: #5a4d41;
+          font-size: 1.1em;
+          line-height: 1.6;
+          white-space: pre-line;
+      }
+
+      .copy-notice {
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.8);
+          color: white;
+          padding: 8px 20px;
+          border-radius: 20px;
+          font-size: 0.9em;
+          display: none;
+          animation: fade 1.5s;
+      }
+
+      @keyframes fade {
+          0% { opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { opacity: 0; }
+      }
+
+      .watermark {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          color: rgba(0, 0, 0, 0.1);
+          font-size: 1.2em;
+          transform: rotate(-15deg);
+      }
+  </style>
+</head>
+<body>
+<div class="article markdown-body">
+  <h2 id="八字排盘">八字排盘</h2>
+  <p>请填写阳历（公历）时间：</p>
+  
+  <form class="form-container">
+    <div class="form-group">
+      <label for="year">年：</label>
+      <input id="year" type="number" min="1900" max="2100" required>
+    </div>
+    <div class="form-group">
+      <label for="month">月：</label>
+      <input id="month" type="number" min="1" max="12" required>
+    </div>
+    <div class="form-group">
+      <label for="day">日：</label>
+      <input id="day" type="number" min="1" max="31" required>
+    </div>
+    <div class="form-group">
+      <label for="hour">时：</label>
+      <input id="hour" type="number" min="0" max="23" placeholder="0到23" required>
+    </div>
+    <div class="form-group">
+      <label for="minute">分：</label>
+      <input id="minute" type="number" min="0" max="59" placeholder="0到59" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">性别：</label>
+      <select id="gender" required>
+        <option value="1">男</option>
+        <option value="0">女</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sect">子时流派：</label>
+      <select id="sect" required>
+        <option value="2">流派2：晚子时日柱算当天</option>
+        <option value="1">流派1：晚子时日柱算明天</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="yunSect">起运流派：</label>
+      <select id="yunSect" required>
+        <option value="1">流派1：3天=1年，1天=4月，1时辰=10天</option>
+        <option value="2">流派2：4320分=1年，360分=1月，12分=1天，1分=2小时</option>
+      </select>
+    </div>
+<br>
+  </form>
+<div class="line" id="result">
+  </div>
+  <table class="yun-table" id="yun">
+    <tbody>
+      <!-- 大运部分 -->
+      <tr>
+        <td rowspan="3">大运</td>
+        <td>2025</td><td>2025</td><td>2035</td><td>2045</td>
+        <td>2055</td><td>2065</td><td>2075</td><td>2085</td>
+        <td>2095</td><td>2105</td>
+      </tr>
+      <tr>
+        <td>1</td><td>1</td><td>11</td><td>21</td>
+        <td>31</td><td>41</td><td>51</td><td>61</td>
+        <td>71</td><td>81</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="active">丁丑</td><td>丙子</td><td>乙亥</td>
+        <td>甲戌</td><td>癸酉</td><td>壬申</td><td>辛未</td>
+        <td>庚午</td><td>己巳</td>
+      </tr>
+  
+      <!-- 流年部分 -->
+      <tr>
+        <td rowspan="3">流年</td>
+        <td>2025</td><td>2026</td><td>2027</td><td>2028</td>
+        <td>2029</td><td>2030</td><td>2031</td><td>2032</td>
+        <td>2033</td><td>2034</td>
+      </tr>
+      <tr>
+        <td>1</td><td>2</td><td>3</td><td>4</td>
+        <td>5</td><td>6</td><td>7</td><td>8</td>
+        <td>9</td><td>10</td>
+      </tr>
+      <tr>
+        <td class="active">乙巳</td><td>丙午</td><td>丁未</td><td>戊申</td>
+        <td>己酉</td><td>庚戌</td><td>辛亥</td><td>壬子</td>
+        <td>癸丑</td><td>甲寅</td>
+      </tr>
+  
+      <!-- 小运部分 -->
+      <tr>
+        <td>小运</td>
+        <td>丙戌</td><td>乙酉</td><td>甲申</td><td>癸未</td>
+        <td>壬午</td><td>辛巳</td><td>庚辰</td><td>己卯</td>
+        <td>戊寅</td><td>丁丑</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <table class="yun-table" id="liu-yue">
+    <tbody>
+      <!-- 流月部分 -->
+      <tr>
+        <td rowspan="2">流月</td>
+        <td>正月</td><td>二月</td><td>三月</td><td>四月</td>
+        <td>五月</td><td>六月</td><td>七月</td><td>八月</td>
+        <td>九月</td><td>十月</td><td>冬月</td><td>腊月</td>
+      </tr>
+      <tr>
+        <td>戊寅</td><td>己卯</td><td>庚辰</td><td>辛巳</td>
+        <td>壬午</td><td>癸未</td><td>甲申</td><td>乙酉</td>
+        <td>丙戌</td><td>丁亥</td><td>戊子</td><td>己丑</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="table-caption">注：可点击上表中橙色格子切换。</div>
+</div>
+<script src="./jquery.min.js"></script>
+<script src="./highlight.min.js"></script>
+<script src="./marked.min.js"></script>
+<script src="./common.js"></script>
+<script src="./lunar.js"></script>
+<script>
+mdr('.md');
+</script>
+
+<script>
+  function copyText() {
+      // 获取文本框元素
+      const textArea = document.getElementById('textInput');
+      
+      // 选中文本
+      textArea.select();
+      
+      try {
+          // 执行复制命令
+          document.execCommand('copy');
+
+      } catch (err) {
+          console.error('复制失败:', err);
+          alert('复制失败，请手动复制');
+      }
+  }
+</script>
+<script>
+(function(){
+  var INDEX = {
+    daYun: 0,
+    liuNian: 0
+  };
+  var today = Solar.fromDate(new Date());
+  $('#year').val(today.getYear());
+  $('#month').val(today.getMonth());
+  $('#day').val(today.getDay());
+  $('#hour').val(today.getHour());
+  $('#minute').val(today.getMinute());
+
+  var throttle = function(fn,delay,atleast){
+    var timer = null;
+    var previous = null;
+    return function(){
+      var now = +new Date();
+      if(!previous) previous = now;
+      if(atleast && now - previous > atleast){
+        fn();
+        previous = now;
+        clearTimeout(timer);
+      } else {
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+          fn();
+          previous = null;
+        }, delay);
+      }
+    }
+  };
+  
+  var onChange = throttle(function(){
+    compute();
+  },20,50);
+  
+  var compute = function() {
+    try {
+        // 获取输入值
+        var year = $('#year').val();
+        var month = $('#month').val();
+        var day = $('#day').val();
+        var hour = $('#hour').val();
+        var minute = $('#minute').val();
+        var gender = parseInt($('#gender').val());
+        var sect = parseInt($('#sect').val());
+        var yunSect = parseInt($('#yunSect').val());
+
+        // 输入验证
+        if (year < 1 || year > 9999 || month < 1 || month > 12 || day < 1 || day > 31 || hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+            return;
+        }
+
+        // 计算八字
+        var solar = Solar.fromYmdHms(year, month, day, hour, minute, 0);
+        var lunar = solar.getLunar();
+        var bazi = lunar.getEightChar();
+        bazi.setSect(sect);
+        var yun = bazi.getYun(gender, yunSect);
+
+        var genderText = gender === 1 ? '男' : '女';
+
+        // 构造结果HTML
+        var resultHTML = `
+            <div class="result-container">
+                <div class="title">生辰八字命盘</div>
+                <table class="bazi-table">
+                    <tbody>
+                        <tr>
+                            <th>公历</th>
+                            <td>${solar.getYear()}年</td>
+                            <td>${solar.getMonth()}月</td>
+                            <td>${solar.getDay()}日</td>
+                            <td>${lunar.getTimeZhi()}时</td>
+                        </tr>
+                        <tr>
+                            <th>天干</th>
+                            <td>${bazi.getYearShiShenGan()}</td>
+                            <td>${bazi.getMonthShiShenGan()}</td>
+                            <td>${bazi.getDayShiShenGan()}</td>
+                            <td>${bazi.getTimeShiShenGan()}</td>
+                        </tr>
+                        <tr>
+                            <th>八字</th>
+                            <td>${bazi.getYear()}</td>
+                            <td>${bazi.getMonth()}</td>
+                            <td>${bazi.getDay()}</td>
+                            <td>${bazi.getTime()}</td>
+                        </tr>
+                        <tr>
+                            <th>地支</th>
+                            <td>${bazi.getYearShiShenZhi()[0]}</td>
+                            <td>${bazi.getMonthShiShenZhi()[0]}</td>
+                            <td>${bazi.getDayShiShenZhi()[0]}</td>
+                            <td>${bazi.getTimeShiShenZhi()[0]}</td>
+                        </tr>
+                        <tr>
+                            <th>五行</th>
+                            <td>${bazi.getYearWuXing()}</td>
+                            <td>${bazi.getMonthWuXing()}</td>
+                            <td>${bazi.getDayWuXing()}</td>
+                            <td>${bazi.getTimeWuXing()}</td>
+                        </tr>
+                        <tr>
+                            <th>纳音</th>
+                            <td>${bazi.getYearNaYin()}</td>
+                            <td>${bazi.getMonthNaYin()}</td>
+                            <td>${bazi.getDayNaYin()}</td>
+                            <td>${bazi.getTimeNaYin()}</td>
+                        </tr>
+                        <tr>
+                            <th>地势</th>
+                            <td>${bazi.getYearDiShi()}</td>
+                            <td>${bazi.getMonthDiShi()}</td>
+                            <td>${bazi.getDayDiShi()}</td>
+                            <td>${bazi.getTimeDiShi()}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="additional-info">
+                    <li>胎元：${bazi.getTaiYuan()} (${bazi.getTaiYuanNaYin()})</li>
+                    <li>胎息：${bazi.getTaiXi()} (${bazi.getTaiXiNaYin()})</li>
+                    <li>命宫：${bazi.getMingGong()} (${bazi.getMingGongNaYin()})</li>
+                    <li>身宫：${bazi.getShenGong()} (${bazi.getShenGongNaYin()})</li>
+                    <li>日空：${bazi.getDayXunKong()}</li>
+                    <li>起运：出生后${yun.getStartYear() > 0 ? yun.getStartYear() + '年' : ''}${yun.getStartMonth() > 0 ? yun.getStartMonth() + '个月' : ''}${yun.getStartDay() > 0 ? yun.getStartDay() + '天' : ''}后起运，起运公历：${yun.getStartSolar().toYmd()}</li>
+                </ul>
+            </div>
+        `;
+
+        $('#result').html(resultHTML);
+
+        // 大运、流年、小运处理
+        var daYun = yun.getDaYun();
+        if (INDEX.daYun >= daYun.length) {
+            INDEX.daYun = 0;
+        }
+        var tds = $('#yun td');
+        tds.removeClass('active').html('');
+        tds.eq(0).html('大运');
+        tds.eq(31).html('流年');
+        tds.eq(62).html('小运');
+        for (var i = 0, j = daYun.length; i < j; i++) {
+            var d = daYun[i];
+            tds.eq(1 + i).html(d.getStartYear());
+            tds.eq(11 + i).html(d.getStartAge());
+            tds.eq(21 + i).html(d.getGanZhi());
+        }
+        tds.eq(21 + INDEX.daYun).addClass('active');
+
+        var liuNian = daYun[INDEX.daYun].getLiuNian();
+        if (INDEX.liuNian >= liuNian.length) {
+            INDEX.liuNian = 0;
+        }
+        for (var i = 0, j = liuNian.length; i < j; i++) {
+            var d = liuNian[i];
+            tds.eq(32 + i).html(d.getYear());
+            tds.eq(42 + i).html(d.getAge());
+            tds.eq(52 + i).html(d.getGanZhi());
+        }
+        tds.eq(52 + INDEX.liuNian).addClass('active');
+
+        var xiaoYun = daYun[INDEX.daYun].getXiaoYun();
+        for (var i = 0, j = xiaoYun.length; i < j; i++) {
+            var d = xiaoYun[i];
+            tds.eq(63 + i).html(d.getGanZhi());
+        }
+
+        tds = $('#liu-yue td');
+        tds.removeClass('active').html('');
+        tds.eq(0).html('流月');
+
+        try {
+            var liuYue = liuNian[INDEX.liuNian].getLiuYue();
+            for (var i = 0, j = liuYue.length; i < j; i++) {
+                var d = liuYue[i];
+                tds.eq(1 + i).html(d.getMonthInChinese() + '月');
+                tds.eq(13 + i).html(d.getGanZhi());
+            }
+        } catch (ex) {
+            if (INDEX.daYun == 0) {
+                INDEX.daYun = 1;
+                onChange();
+            }
+        }
+
+        // 添加总结信息
+        var summary = `
+            <div class="summary-container">
+                <div class="pillars-section">
+                    <h3>核心命理信息</h3>
+                    <div class="grid">
+                        <div class="card">
+                            <h4>四柱</h4>
+                            <ul>
+                                <li>年柱：${bazi.getYear()}</li>
+                                <li>月柱：${bazi.getMonth()}</li>
+                                <li>日柱：${bazi.getDay()}</li>
+                                <li>时柱：${bazi.getTime()}</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4>起运时间</h4>
+                            <p>${yun.getStartSolar().toYmd()}</p>
+                            <div class="detail">
+                                出生后：${yun.getStartYear() > 0 ? yun.getStartYear() + '年' : ''}${yun.getStartMonth() > 0 ? yun.getStartMonth() + '个月' : ''}${yun.getStartDay() > 0 ? yun.getStartDay() + '天' : ''}
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h4>当前大运</h4>
+                            ${daYun.length > 0 ? `
+                                <p>${daYun[INDEX.daYun].getGanZhi()}</p>
+                                <div class="meta">
+                                    <span>${daYun[INDEX.daYun].getStartYear()}年开始</span>
+                                    <span>（${daYun[INDEX.daYun].getStartAge()}岁）</span>
+                                </div>
+                            ` : '无大运数据'}
+                        </div>
+                        <div class="card">
+                            <h4>当前流年</h4>
+                            ${liuNian.length > 0 ? `
+                                <p>${liuNian[INDEX.liuNian].getGanZhi()}</p>
+                                <div class="meta">
+                                    <span>${liuNian[INDEX.liuNian].getYear()}年</span>
+                                    <span>（${liuNian[INDEX.liuNian].getAge()}岁）</span>
+                                </div>
+                            ` : '无流年数据'}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        $('#result').append(summary);
+
+        // 构造四柱、起运、大运和流年的文本信息
+        var summaryText = `
+            <div class="summary-text">
+                <h3>您的赛博咒语（中间四行最核心）：</h3>
+                <textarea class="text-area" id="textInput">
+请分析此命盘，
+四柱为 ${bazi.getYear()} ${bazi.getMonth()} ${bazi.getDay()} ${bazi.getTime()}，${year}年生，性别：${genderText}
+出生后${yun.getStartYear()}年${yun.getStartMonth()}个月${yun.getStartDay()}天起运，
+大运为 ${yun.getDaYun().map((d, index) => {
+                        const startAge = d.getStartAge();
+                        const endAge = startAge + 9; // 10岁为一个周期
+                        return `${d.getGanZhi()} (${startAge}岁 - ${endAge}岁)`;
+                    }).join('、')}
+流年为 ${yun.getDaYun()[INDEX.daYun].getLiuNian().map(d => `${d.getYear()}年 ${d.getGanZhi()}`).join('、')}
+                </textarea>
+                <button class="copy-button" onclick="copyText()">复制文本</button>
+
+            </div>
+        `;
+
+        $('#result').append(summaryText);
+
+    } catch (e) {
+        console.trace(e);
+        $('#result').html('');
+    }
+};
+
+compute();
+
+  
+  $('#year').on('input propertychange',onChange);
+  $('#month').on('input propertychange',onChange);
+  $('#day').on('input propertychange',onChange);
+  $('#hour').on('input propertychange',onChange);
+  $('#minute').on('input propertychange',onChange);
+  $('#gender').on('change',onChange);
+  $('#sect').on('change',onChange);
+  $('#yunSect').on('change',onChange);
+  
+  var tds = $('#yun td');
+  tds.each(function(i){
+    $(this).data('index',i);
+  });
+  tds.on('click',function(){
+    var index = $(this).data('index');
+    if(index>=21&&index<31){
+      INDEX.daYun = index-21;
+      onChange();
+    }else if(index>=52&&index<62){
+      INDEX.liuNian = index-52;
+      onChange();
+    }
+  });
+})();
+</script>
+
+</body>
+
+<h2>网络上的其他咒语（原理差不多，自己组合，点击复制）</h2>
+<div class="spell-card" onclick="copySpell(this)">
+  <div class="spell-title">指令1</div>
+  <div class="spell-content">你现在是一个中国传统八字命理的专业研究人员，你熟读穷通宝典、三命通会、滴天髓、渊海子平这些书籍。你熟读千里命稿、协纪辨方书、果老星宗、子平真栓、神峰通考等一系列书籍。根据【“排大运分阳年、阴年。阳年：甲丙戊庚壬。阴年：乙丁己辛癸。阳年男，阴年女为顺排，阴年男，阳年女为逆排。具体排法以月干支为基准，进行顺逆。小孩交大运前，以月柱干支为大运十天干：甲乙丙丁戊己庚辛壬癸，十二地支：子丑寅卯辰巳午未申酉戌亥。我的出生是农历 年 月日，性别，出生地为…，】（这部分替换）请你以一个专业四柱八字研究者的角色，根据以上我所提到的书籍，及相关四柱八字的书籍和经验，告诉我的八字以及对我的八字进行分析。</div>
+</div>
+
+<div class="spell-card" onclick="copySpell(this)">
+  <div class="spell-title">指令2</div>
+  <div class="spell-content">你是一个顶尖的八字大师，帮我分析一下我的八字，我是生日出生在✘✘，地点✘✘，性别女，需要严格.按照八字命理的理论和步骤来分析，不用太关注我的迷信什么的，先帮我看一下我的八字和大运流年，请举例2024年之前的重大事件以做验证，我会在你回答后提供相应事实以纠偏，要具体到每个月，谢谢。
+
+    修正指令：我在✘✘年发生了✘✘，请结合这件事修正命盘。</div>
+</div>
+
+<div class="spell-card" onclick="copySpell(this)">
+  <div class="spell-title">指令3</div>
+  <div class="spell-content">第一问： 你是一个命理学大师，深谙八字及奇门等传统命理方法。我出生于阳/农历xxxx年xx月xx日，xx时xx分，xx市，男/女性。请用奇门遁甲及八字分析我的一生，先帮我回顾我过去十年的三个重大事件，再着重分析整体运势，学业、事业、财运、婚姻等。
+    <br>
+    第二问： 请你用奇门遁甲的方式，分析我这个大运十年的爱情，婚姻，事业，财运，交友，父母，子女。 以及我这个大运有什么机会点？
+    <br>
+    第三问： 请你用奇门遁甲的方式，帮我分析 今年xx月的xx事情，和xx，在xx地方，能不能成功？ 如果我想要成功，我应该通过什么样的方式去干预？
+  </div>
+</div>
+<div class="spell-card" onclick="copySpell(this)">
+  <div class="spell-title">指令4</div>
+  <div class="spell-content">你是一个资深命理师，熟读 《穷通宝鉴《滴天髓》《三命通会》《子平真诠》《千里命稿》《五行精纪》，现在请你对我给出的出生时间做出专业的八字分析： 生辰：阳历 性别： 出生地： 重点细看人品财运婚姻</div>
+</div>
+<div class="spell-card" onclick="copySpell(this)">
+  <div class="spell-title">指令5</div>
+  <div class="spell-content">你现在是一个中国传统八字命理的专业研究人员。 你熟读《穷通宝典》、《 三命通会 》、《滴天髓》、《渊海子平》这些书籍。你熟读《千里命稿》、《协纪辨方书》、《果老星宗》、《子平真诠》、《神峰通考》一系列书籍。 根据“排大运分阳年、阴年。阳年：甲丙戊庚壬。阴年：乙丁己辛癸，阳年男，阴年女为顺排，阴年男，阳年女为逆排，具体排法以月干支为基准，进行顺逆。小孩交大运前，以月柱干支为大运。十天干：甲乙丙丁戊己庚辛壬癸，十二地支：子丑寅卯辰巳午未申酉戌亥。请详细分析：生于农历xxxx年xx月xx日，xx时xx分，xx市，男/女性的事业，家庭，婚姻，财运。</div>
+</div>
+<div class="spell-card" onclick="copySpell(this)">
+  <div class="spell-title">指令6</div>
+  <div class="spell-content">你现在是一个中国传统八字命理的专业研究人员 你熟读穷通宝典，三命通会，滴天髓，渊海子平这些书籍。你熟读千里命稿，协纪辨方书，果老星宗，子平真栓，神峰通考一系列书籍。 根据“排大运分阳年、阴年。阳年:甲丙戊庚壬。阴年:乙丁己辛癸，阳年男，阴年女为顺排，阴年男，阳年女为逆排，具体排法以月干支为基准，进行顺逆，小孩交大运前，以月柱干支为大运十天干:甲乙丙丁戊已庚辛壬癸，十二地支:子丑寅卯辰巳午未申酉戌亥。请详细分析：生于农历xxxx年xx月xx日，xx时xx分，xx市，男/女性的事业，家庭，婚姻，财运。</div>
+</div>
+<div id="copyNotice" class="copy-notice">已复制到剪贴板</div>
+<div class="support-container" style="max-width: 400px; margin: 2rem auto; padding: 20px; background: #f8f9fa; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <h2 style="color: #2d3436; margin-bottom: 1rem; font-family: 'Helvetica Neue', sans-serif;">
+      ✨ 您的支持是我前进的动力 ✨
+  </h2>
+  <p style="color: #636e72; line-height: 1.6; margin-bottom: 1.5rem;">
+      如果喜欢我的作品，可以通过扫码支持<br>
+      每一份心意都会转化为更优质的内容
+  </p>
+  <div class="qr-wrapper" style="padding: 15px; background: white; border-radius: 8px; display: inline-block;">
+      <img 
+          src="ali.png" 
+          alt="支持二维码" 
+          style="width: 220px; height: 220px; object-fit: cover; transition: transform 0.3s ease;"
+          onmouseover="this.style.transform='scale(1.05)'"
+          onmouseout="this.style.transform='scale(1)'"
+      >
+  </div>
+  <p style="color: #74b9ff; margin-top: 1.5rem; font-size: 0.9em;">
+      🙏 感谢您的每一份心意支持！
+  </p>
+</div>
+<script>
+    function copySpell(card) {
+        const content = card.querySelector('.spell-content').innerText;
+        navigator.clipboard.writeText(content)
+            .then(() => showNotice())
+            .catch(err => console.error('复制失败:', err));
+    }
+
+    function showNotice() {
+        const notice = document.getElementById('copyNotice');
+        notice.style.display = 'block';
+        setTimeout(() => notice.style.display = 'none', 1500);
+    }
+</script>
+</html>
